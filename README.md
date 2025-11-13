@@ -35,12 +35,7 @@ No need to clone this repo before going through steps
             pkg-config
         ```
 3. Install Binutils(2.25) and CGEN(1.1)
-    - You can use the provided script in this repo to install 
-        ```
-        git clone https://github.com/SAIL2CGEN/cgen-binutils-example.git
-        ./install.sh
-        ```
-    - OR if you do not want to clone this repo, run the commands in the [install.sh](./install.sh) manually
+    - Run the commands in the [install.sh](./install.sh) manually
         ```
         wget ftp://sourceware.org/pub/binutils/releases/binutils-2.25.tar.gz
         tar -xzf binutils-2.25.tar.gz
@@ -61,10 +56,10 @@ No need to clone this repo before going through steps
 5. Run CGEN for lm32 architecture
     - Go to opcodes directory and generate new files for Binutils targeting lm32 architecture
         ```
-        cd ../opcodes
+        cd ./opcodes
         make stamp-lm32
         ```
-    - You should see the following in the output messages
+    - You should see the following in the output messages when completed
         ```
         Generating lm32-desc.h ...
         Generating lm32-desc.c ...
