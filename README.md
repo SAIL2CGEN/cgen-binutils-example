@@ -2,7 +2,8 @@
 This repository is meant to be an example of how to run the CGEN tool for binutils. The goal is to provide clear step by step directions so that anyone can replicate the example flow.
 
 ## Steps to Build and Compile
-No need to clone this repo before going through steps
+Most of these instructions are from the article ["Using CGEN to Generate Files for Binutils"](https://fulcronz27.wordpress.com/2014/12/24/using-cgen-to-generate-files-for-binutils/) by Pipat Methavanitpong \
+No need to clone this repo before going through steps.
 1. Create a docker container
     - Install the `debian/eol:jessie` docker container
         ```
@@ -46,11 +47,15 @@ No need to clone this repo before going through steps
         ```
         cp -r ./cgen-1.1/cgen ./binutils-2.25
         ```
+    - Create build directory
+        ```
+        mkdir build
+        cd build
+        ```
 4. Build Binutils
     - Configure and build Binutils
         ```
-        cd binutils-2.25
-        ./configure
+        ../binutils-2.25/configure --prefix=/root/rv-mentorship/build
         make -j6
         ```
 5. Run CGEN for lm32 architecture
@@ -70,4 +75,9 @@ No need to clone this repo before going through steps
         Generating lm32-dis.in ...
         Generating lm32-opinst.c ...
         touch stamp-lm32
+        ```
+    - Those files will be in the Binutils's opcode directory which can be confirmed by looking at timestamp
+        ```
+        cd ../binutils-2.25/opcodes/
+        ls -l lm32-*
         ```
