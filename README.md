@@ -55,7 +55,7 @@ No need to clone this repo before going through steps.
 4. Build Binutils
     - Configure and build Binutils
         ```
-        ../binutils-2.25/configure --prefix=/root/rv-mentorship/build
+        ../binutils-2.25/configure --prefix=[build directory path]
         make -j6
         ```
 5. Run CGEN for lm32 architecture
