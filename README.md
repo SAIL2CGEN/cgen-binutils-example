@@ -35,49 +35,42 @@ No need to clone this repo before going through steps.
             gawk \
             pkg-config
         ```
-3. Install Binutils(2.25) and CGEN(1.1)
+3. Install Binutils(2.31) and CGEN(snapshot 2018/06/01)
     - Run the commands in the [install.sh](./install.sh) manually
         ```
-        wget ftp://sourceware.org/pub/binutils/releases/binutils-2.25.tar.gz
-        tar -xzf binutils-2.25.tar.gz
-        wget ftp://sourceware.org/pub/cgen/releases/cgen-1.1.tar.gz
-        tar -xzf cgen-1.1.tar.gz
+        wget https://sourceware.org/pub/binutils/releases/binutils-2.31.1.tar.bz2
+        tar -xzf binutils-2.31.tar.gz
+        wget https://sourceware.org/pub/cgen/snapshots/cgen-20180601.tar.bz2
+        mkdir cgen-20180601
+        tar -xvjf cgen-20180601.tar.bz2 -C ./cgen-20180601
         ```
     - Copy CGEN folder into Binutils folder
         ```
-        cp -r ./cgen-1.1/cgen ./binutils-2.25
+        cp -r ./cgen-20180601/src/cgen ./binutils-2.31
         ```
-    - Create build directory
+    - Create directory for where Binutils tools will be placed
+        ```
+        mkdir lm32-binutils
+        realpath lm32-binutils
+        ```
+        NOTE: The absolute path will be used later to configure binutils
+
+    - Create directory for building Binutils
         ```
         mkdir build
         cd build
         ```
-4. Build Binutils
-    - Configure and build Binutils
+4. Build and install Binutils for lm32
+    - Configure Binutils
         ```
-        ../binutils-2.25/configure --prefix=[build directory path]
+        ../binutils-2.31/configure --target=lm32-unknown-linux-gnu --prefix=[lm32-binutils path] --enable-cgen-maint
+        ```
+    - Build and install Binutils
+        ```
         make -j6
+        make install
         ```
-5. Run CGEN for lm32 architecture
-    - Go to opcodes directory and generate new files for Binutils targeting lm32 architecture
+    - You should now see that the `lm32-binutils` directory is now populated with binary tools
         ```
-        cd ./opcodes
-        make stamp-lm32
-        ```
-    - You should see the following in the output messages when completed
-        ```
-        Generating lm32-desc.h ...
-        Generating lm32-desc.c ...
-        Generating lm32-opc.h ...
-        Generating lm32-opc.c ...
-        Generating lm32-ibld.in ...
-        Generating lm32-asm.in ...
-        Generating lm32-dis.in ...
-        Generating lm32-opinst.c ...
-        touch stamp-lm32
-        ```
-    - Those files will be in the Binutils's opcode directory which can be confirmed by looking at timestamp
-        ```
-        cd ../binutils-2.25/opcodes/
-        ls -l lm32-*
+        ls ../lm32-binutils/bin
         ```
