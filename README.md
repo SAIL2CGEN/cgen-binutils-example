@@ -37,7 +37,7 @@ No need to clone this repo before going through steps.
 3. Install Binutils(2.31) and CGEN(snapshot 2018/06/01)
     - Run the commands in the [install.sh](./install.sh) manually
         ```
-        wget https://sourceware.org/pub/binutils/releases/binutils-2.31.1.tar.bz2
+        wget https://sourceware.org/pub/binutils/releases/binutils-2.31.tar.gz
         tar -xzf binutils-2.31.tar.gz
         wget https://sourceware.org/pub/cgen/snapshots/cgen-20180601.tar.bz2
         mkdir cgen-20180601
@@ -62,7 +62,7 @@ No need to clone this repo before going through steps.
 4. Build and install Binutils for lm32
     - Configure Binutils
         ```
-        ../binutils-2.31/configure --target=lm32-unknown-linux-gnu --prefix=[lm32-binutils path] --enable-cgen-maint
+        ../binutils-2.31/configure --target=lm32-unknown-linux-gnu --enable-cgen-maint --prefix=[lm32-binutils path]
         ```
     - Build and install Binutils
         ```
