@@ -2,7 +2,6 @@
 This repository is meant to be an example of how to run the CGEN tool for binutils. The goal is to provide clear step by step directions so that anyone can replicate the example flow.
 
 ## Steps to Build and Compile
-Most of these instructions are from the article ["Using CGEN to Generate Files for Binutils"](https://fulcronz27.wordpress.com/2014/12/24/using-cgen-to-generate-files-for-binutils/) by Pipat Methavanitpong \
 No need to clone this repo before going through steps.
 1. Create a docker container
     - Install the `debian/eol:jessie` docker container
